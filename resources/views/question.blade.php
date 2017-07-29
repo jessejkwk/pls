@@ -70,7 +70,7 @@
             <div class="col-sm-5">
                 <div class="panel panel-default">
                     <div class="panel-heading">
-                        <strong>{{ $answer->user->name }} </strong> <small> at {{ $answer->answred_at }}</small> <span class="text-muted">{{ $answer->answered_at }}</span>
+                        <strong> <a href="{{ route('profile' , [ 'id' => $answer->user->id ]) }}"> {{ $answer->user->name }} </a> </strong> <small> at {{ $answer->answred_at }}</small> <span class="text-muted">{{ $answer->answered_at }}</span>
                     </div>
                     <div class="panel-body">
                         {{ $answer->the_answer }}

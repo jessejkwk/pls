@@ -4,9 +4,12 @@
 @section('content')
 
 
-        <h2> Hello {{ \Auth::user()->name }}</h2>
+        <h1> {{ $user->name }} <small>'s profile . </small></h1>
 
 <br>
+<br>
+
+        <h2> <small> Hello </small> {{ \Auth::user()->name }}</h2>
 <br>
 <br>
 
@@ -20,7 +23,7 @@
                 {{--<h4 class="card-title">{{ $qt->user->name }}</h4>--}}
                 <p class="card-text">{{ $qt->the_question }} ? </p>
                 <p style="font-family: 'Arial Hebrew Scholar'"> {{ $qt->details }}</p>
-                <a href="{{ route('question' , ['id' => $qt->id]) }}" class="btn btn-primary">see more</a>
+                <a href="{{ route('question' , ['id' => $qt->id]) }}" class="btn btn-success">see more</a>
             </div>
         </div>
         <br><br>

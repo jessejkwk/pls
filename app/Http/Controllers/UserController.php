@@ -14,9 +14,11 @@ class UserController extends Controller
         if ( \Auth::guest() )
             return redirect()->route( 'login' );
 
-        $questions = \App\User::find($id)->questions;
+        $user_sProfile = \App\User::find($id) ;
 
-        return view( 'profile' )->with( 'questions' , $questions  );
+        $questions = $user_sProfile->questions;
+
+        return view( 'profile' )->with( ['questions' => $questions , 'user' => $user_sProfile ]  );
     }
 
 
@@ -39,7 +41,13 @@ class UserController extends Controller
         return redirect()->route( 'chat' , [ 'topic_id' => $request->input('topicId')]);
     }
 
+    public function users()
+    {
+        $users = \App\User::orderBy('created_at' , 'desc')->paginate(10) ;
 
+        return view('users')->with('users'  , $users) ;
+
+    }
 
     public function chatDiscussion($topic_id)
     {

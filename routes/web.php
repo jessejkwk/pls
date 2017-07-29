@@ -32,6 +32,12 @@ Route::get( '/search', 'HomeController@search')->name('search') ;
 
 Route::get( 'profile/{id}', 'UserController@profile' )->name( 'profile' );
 
+// allow only Admin to see all users and infos
+Route::get('/users' , [
+    'uses' => 'UserController@users' ,
+    'middleware' => 'admin'
+])->name('users') ;
+
 // question controller
 
 Route::get( '/askQuestion', 'QuestionController@create' )->name( 'askQuestion' );
