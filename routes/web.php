@@ -18,37 +18,39 @@ Route::get( '/', function ()
     return view( 'welcome' );
 } );
 
+// authentication route
+//  login  -- register -- logout
+
 Auth::routes();
 
+// home routes
 Route::get( '/home', 'HomeController@index' )->name( 'home' );
 
+Route::get( '/search', 'HomeController@search')->name('search') ;
+
+// profile route
 
 Route::get( 'profile/{id}', 'UserController@profile' )->name( 'profile' );
 
+// question controller
 
-Route::get( '/search', 'UserController@search')->name('search') ;
+Route::get( '/askQuestion', 'QuestionController@create' )->name( 'askQuestion' );
 
+Route::post( '/postQuestion', 'QuestionController@store' )->name( 'postQuestion' );
 
-Route::get( '/question/{id}', function ($id)
-{
-    $qt = Question::find( $id );
-    $answers = $qt->answers;
+Route::get( '/question/{id}', 'QuestionController@show' )->name( 'question' );
 
-    return view( 'question' )->with( ['qt' => $qt, 'anws' => $answers] );
+// route for answers .
 
-} )->name( 'question' );
-
-Route::post( '/new_answer', 'UserController@postAnswer' )->name( 'new_answer' );
+Route::post( '/new_answer', 'QuestionController@postAnswer' )->name( 'new_answer' );
 
 Route::post( '/postDisc', 'UserController@postDisc' )->name( 'postDisc' );
 
 Route::get( '/discussions/{topic_id}', 'UserController@chatDiscussion')->name('chat') ;
 
 
-Route::get( '/askQuestion', 'UserController@askQuestion' )->name( 'askQuestion' );
 
 
-Route::post( '/postQuestion', 'UserController@postQuestion' )->name( 'postQuestion' );
 
 
 

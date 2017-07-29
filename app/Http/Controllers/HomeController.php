@@ -28,4 +28,19 @@ class HomeController extends Controller
 
         return view('home')->with('questions' , $questions) ;
     }
+
+    public function search(Request $request)
+    {
+        $this->validate($request , [
+            'search' => 'required'
+        ]) ;
+
+        $questions = Question::where('the_question' , 'like' , '%' . $request->input('search' ) . '%')->paginate(5) ;
+
+        return view('home')->with('questions' , $questions ) ;
+
+    }
+
+
+
 }

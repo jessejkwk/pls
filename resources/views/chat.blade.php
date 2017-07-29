@@ -6,7 +6,6 @@
 
     <style>
         .chatperson {
-            display: block;
             border-bottom: 1px solid #eee;
             width: 100%;
             display: flex;
@@ -71,7 +70,7 @@
                             <td><img src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" class="img-thumbnail"
                                      alt="Cinque Terre" width="100" height="100"></td>
                             <td>
-                                <h5 style="font-family: Didot ; font-style: italic ; font-size: large"> {{ $chat->user->name }}
+                                <h5 style="font-family: Didot ; font-style: italic ; font-size: large"> <a href="{{ route('profile' , [ 'id' => $chat->user->id ]) }}"> {{ $chat->user->name }} </a>
                                     : </h5>
                                 {{ $chat->message }}</td>
                             <td>{{ $chat->sent_at->format('g:i') }}</td>
