@@ -55,7 +55,9 @@ Route::get( '/discussions/{topic_id}', 'UserController@chatDiscussion')->name('c
 
 Route::post('/delete/question/{id}' , 'QuestionController@destroy' )->name('deleteQuestion') ;
 
+Route::get('/editQuestion/{id}' , 'QuestionController@edit')->name('editQuestion') ;
 
+Route::post('/editQuestion/{id}' , 'QuestionController@update')->name('postEditQuestion') ;
 
 
 

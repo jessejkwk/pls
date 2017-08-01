@@ -46,7 +46,6 @@ class UserController extends Controller
         $users = \App\User::orderBy('created_at' , 'desc')->paginate(10) ;
 
         return view('users')->with('users'  , $users) ;
-
     }
 
     public function chatDiscussion($topic_id)

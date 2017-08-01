@@ -178,10 +178,6 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-//        // collective html
-//
-//        'Form' => Collective\Html\FormFacade::class,
-//        'Html' => Collective\Html\HtmlFacade::class,
     ],
 
     /*

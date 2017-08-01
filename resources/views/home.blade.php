@@ -40,6 +40,12 @@
 
         @foreach($questions as $qt)
             <div class="card">
+                <form method="post" action="{{ route('deleteQuestion' , ['id' => $qt->id]) }}">
+                    <button type="submit" class="close" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{ csrf_field() }}
+                </form>
                 <div class="card-header">
                     Question N {{ $qt->id }}
                 </div>

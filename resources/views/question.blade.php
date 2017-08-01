@@ -9,8 +9,17 @@
 
     <div class="card" >
         <div class="card-block">
+
+            <form method="post" action="{{ route('deleteQuestion' , ['id' => $qt->id]) }}">
+                <button type="submit" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ csrf_field() }}
+            </form>
             <h3 class="card-title">{{ $qt->user->name }}</h3>
-            <p class="card-text">{{ $qt->the_question }}</p>
+            <p class="card-text">{{ $qt->the_question }} ----- {{ $qt->id }}</p>
+            <p class="card-text">{{ $qt->details }}</p>
+            <a href="{{ route('editQuestion' , ['id' => $qt->id] ) }}" class="btn btn-secondary btn-lg @if(\Gate::denies('edit_question' , $qt)) disabled @endif" role="button" aria-disabled="true">edit question</a>
             <a href="{{ route('profile' , [ 'id' => $qt->user_id] ) }}" class="btn btn-primary">see more from {{ $qt->user->name }}</a>
         </div>
     </div>
