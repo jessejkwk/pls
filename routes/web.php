@@ -11,7 +11,6 @@
 |
 */
 
-use App\Question;
 
 Route::get( '/', function ()
 {
@@ -54,7 +53,7 @@ Route::post( '/postDisc', 'UserController@postDisc' )->name( 'postDisc' );
 
 Route::get( '/discussions/{topic_id}', 'UserController@chatDiscussion')->name('chat') ;
 
-
+Route::post('/delete/question/{id}' , 'QuestionController@destroy' )->name('deleteQuestion') ;
 
 
 

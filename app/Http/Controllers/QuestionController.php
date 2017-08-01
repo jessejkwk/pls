@@ -6,6 +6,7 @@ use App\Answer;
 use App\Http\Requests\NewQuestionRequest;
 use App\Question;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class QuestionController extends Controller
 {
@@ -43,6 +44,10 @@ class QuestionController extends Controller
         $question->user_id = $request->input('userId') ;
         $question->asked_at = \Carbon\Carbon::now() ;
         $question->save() ;
+
+        //Session::flash('message' , 'thanks for asking');
+
+        flashData('thanks for asking ' , 'sucess') ;
 
         return redirect()->route('home') ;
     }
@@ -92,7 +97,19 @@ class QuestionController extends Controller
      */
     public function destroy($id)
     {
-        Question::destroy($id) ;
+        if (\Auth::id() == Question::find($id)->user->id)
+        {
+            $question = Question::find($id) ;
+            $question->answers->each(function ($answer)
+            {
+                $answer->delete() ;
+            });
+            Question::destroy($id) ;
+        }
+        else
+            flashData('you can\'t delete that question ' , 'danger') ;
+
+        return redirect()->back() ;
     }
 
     public function postAnswer(Request $request)
@@ -100,8 +117,8 @@ class QuestionController extends Controller
         $this->validate( $request, [
             'the_answer' => 'required',
             'userId' => 'required',
-            'questionId' => 'required']
-        );
+            'questionId' => 'required'
+        ]);
 
         $newAnswer = new Answer;
 
@@ -111,6 +128,9 @@ class QuestionController extends Controller
         $newAnswer->answred_at = \Carbon\Carbon::now();
 
         $newAnswer->save();
+
+        //Session::flash('message' , ' thanks for helping others ') ;
+        flashData(['message' => 'thanks for helping others' ] , 'info') ;
 
         return redirect()->route( 'question', ['id' => $request->input( 'questionId' )] );
     }

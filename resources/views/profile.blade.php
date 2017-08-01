@@ -4,18 +4,27 @@
 @section('content')
 
 
-        <h1> {{ $user->name }} <small>'s profile . </small></h1>
+    <h1> {{ $user->name }}
+        <small>'s profile .</small>
+    </h1>
 
-<br>
-<br>
+    <br>
+    <br>
 
-        <h2> <small> Hello </small> {{ \Auth::user()->name }}</h2>
-<br>
-<br>
+    <h2>
+        <small> Hello</small> {{ \Auth::user()->name }}</h2>
+    <br>
+    <br>
 
 
     @foreach($questions as $qt)
         <div class="card">
+            <form method="post" action="{{ route('deleteQuestion' , ['id' => $qt->id]) }}">
+                <button type="submit" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                {{ csrf_field() }}
+            </form>
             <div class="card-header">
                 <h4 style="font-family: 'Apple SD Gothic Neo'"> Question N {{ $qt->id }} </h4>
             </div>

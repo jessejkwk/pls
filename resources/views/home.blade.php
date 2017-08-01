@@ -2,6 +2,9 @@
 
 @section('content')
 
+
+
+
     @if(\Auth::user()->isAdmin())
         <a class="btn btn-primary" href="{{ route('users') }}"> see all Users </a>
     @endif
@@ -94,5 +97,5 @@
             z-index: 3;
         }
     </style>
-    
+
 @endsection

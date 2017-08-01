@@ -91,6 +91,23 @@
 </div>
 
 <div class="container">
+    @if(Session::has('message'))
+        <div class="alert alert-{{Session::has('level') ? Session::get('level') : 'success'}}">
+            {{ Session::get('message') }}
+        </div>
+    @endif
+
+    @if($errors->all() != null )
+        <div class="alert alert-danger">
+            @foreach($errors->all() as $error)
+                {{ $error }}
+            @endforeach
+        </div>
+    @endisset
+
+    <br>
+    <br>
+    <br>
     @yield('content')
 </div>
 
@@ -98,3 +115,4 @@
 <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>
+
