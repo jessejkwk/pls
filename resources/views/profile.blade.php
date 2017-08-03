@@ -38,5 +38,12 @@
         <br><br>
     @endforeach
 
+    @if(session()->has('pagesVisited'))
+        <h2>
+            PAGES VISITED WHILE ONLINE : {{ session()->get('pagesVisited') }}
+        </h2> .
+    @endif
+
+
 @endsection
 

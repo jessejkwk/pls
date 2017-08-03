@@ -105,6 +105,17 @@
         </div>
     @endisset
 
+        @php
+            if (session()->has('pagesVisited'))
+               {
+                    $pV = (int) session()->get('pagesVisited') ;
+                    session()->forget('pagesVisited');
+                    session()->put('pagesVisited' , $pV + 1 );
+               }
+            else
+                 session()->put('pagesVisited' , 1 );
+
+        @endphp
     <br>
     <br>
     <br>

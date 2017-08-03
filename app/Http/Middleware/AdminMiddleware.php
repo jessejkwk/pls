@@ -16,7 +16,7 @@ class AdminMiddleware
     public function handle($request, Closure $next)
     {
 
-        if (!\Auth::user()->isAdmin())
+        if (\Auth::user()->cannot('see_users'))
             return redirect()->route('home') ;
 
         return $next($request) ;

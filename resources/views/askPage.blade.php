@@ -41,7 +41,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <button type="submit" class="btn main-btn pull-right">@isset($timeToEdit)
+                        <button type="submit" class="btn main-btn pull-right">@if($timeToEdit)
                                 Update @else Insert @endisset</button>
                     </div>
                 </div>

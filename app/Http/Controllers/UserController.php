@@ -52,7 +52,7 @@ class UserController extends Controller
     {
         $topics = Topic::all() ;
         $topic = Topic::find($topic_id) ;
-        $chats = $topic->discussions ;
+        $chats = $topic->discussions()->orderBy('sent_at' , 'desc')->take(10)->get()->reverse() ;
 
         return view( 'chat' )->with( ['chats' => $chats , 'topics' => $topics  , 'topicSelected' => $topic] );
     }

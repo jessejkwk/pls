@@ -5,8 +5,10 @@
 
 
 
-    @if(\Auth::user()->isAdmin())
+    @can('see_users')
         <a class="btn btn-primary" href="{{ route('users') }}"> see all Users </a>
+    @else
+        <p> you can't see list of users </p>
     @endif
 
 

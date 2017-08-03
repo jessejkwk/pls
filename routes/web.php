@@ -34,8 +34,9 @@ Route::get( 'profile/{id}', 'UserController@profile' )->name( 'profile' );
 // allow only Admin to see all users and infos
 Route::get('/users' , [
     'uses' => 'UserController@users' ,
-    'middleware' => 'admin'
-])->name('users') ;
+    'middleware' => 'admin' ,
+     'as' => 'users'
+]) ; // ->middleware('can:see_users') ;
 
 // question controller
 
